@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WYZE - Coleção Oficial</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #00A859;
+    --secondary: #111111;
+    --accent: #FFD700;
+    --light: #FFFFFF;
+    --gray: #F5F5F5;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: var(--secondary);
+    overflow-x:hidden;
+}
+
+h1,h2,h3 {
+    font-family:'Bebas Neue',sans-serif;
+    text-transform:uppercase;
+}
+
+a { text-decoration:none; color:inherit; }
+
+/* HERO */
+
+.hero {
+    height:100vh;
+    background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)), url('icon.png') center/cover;
+    color:white;
+    display:flex;
+    flex-direction:column;
+}
+
+.navbar {
+    display:flex;
+    justify-content:space-between;
+    padding:20px 5%;
+    background:rgba(0,0,0,.8);
+    position:fixed;
+    width:100%;
+    z-index:1000;
+}
+
+.logo {
+    font-size:2rem;
+    color:var(--accent);
+}
+
+.nav-links {
+    list-style:none;
+    display:flex;
+    gap:2rem;
+}
+
+.cart-icon {
+    position:relative;
+    cursor:pointer;
+    font-size:1.2rem;
+}
+
+.cart-count {
+    position:absolute;
+    top:-8px;
+    right:-10px;
+    background:var(--accent);
+    color:black;
+    font-size:12px;
+    padding:3px 7px;
+    border-radius:50%;
+}
+
+.hero-content {
+    margin:auto;
+    text-align:center;
+}
+
+.hero-content h1 { font-size:4rem; }
+
+.cta-button {
+    background:var(--primary);
+    padding:10px 30px;
+    border-radius:30px;
+    display:inline-block;
+    margin-top:20px;
+    color:white;
+}
+
+/* PRODUCTS */
+
+.products-section {
+    padding:100px 5%;
+    background:var(--gray);
+}
+
+.products-grid {
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+    gap:2rem;
+}
+
+.product-card {
+    background:white;
+    border-radius:10px;
+    overflow:hidden;
+}
+
+.product-card img {
+    width:100%;
+    height:300px;
+    object-fit:cover;
+}
+
+.product-info { padding:20px; }
+
+.price {
+    color:var(--primary);
+    font-weight:bold;
+    margin:10px 0;
+}
+
+.buy-button {
+    width:100%;
+    padding:10px;
+    background:var(--secondary);
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+/* ABOUT */
+
+.about-section {
+    padding:80px 5%;
+}
+
+/* PROMO */
+
+.promo-banner {
+    background:var(--primary);
+    color:white;
+    text-align:center;
+    padding:60px 5%;
+}
+
+/* FOOTER */
+
+footer {
+    background:var(--secondary);
+    color:white;
+    padding:40px 5%;
+    text-align:center;
+}
+
+/* CARRINHO */
+
+.cart-overlay {
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.5);
+    display:none;
+    z-index:999;
+}
+
+.cart-overlay.active { display:block; }
+
+.cart-sidebar {
+    position:fixed;
+    top:0;
+    right:-400px;
+    width:350px;
+    height:100%;
+    background:white;
+    box-shadow:-5px 0 15px rgba(0,0,0,.2);
+    transition:.3s;
+    z-index:1000;
+    display:flex;
+    flex-direction:column;
+}
+
+.cart-sidebar.active { right:0; }
+
+.cart-header {
+    padding:20px;
+    display:flex;
+    justify-content:space-between;
+    border-bottom:1px solid #eee;
+}
+
+.cart-items {
+    flex:1;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.cart-item {
+    margin-bottom:15px;
+}
+
+.cart-footer {
+    padding:20px;
+    border-top:1px solid #eee;
+}
+
+.checkout-btn {
+    width:100%;
+    padding:10px;
+    background:var(--primary);
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+.close-cart { cursor:pointer; font-size:20px; }
+
+/* ================= FOOTER PROFISSIONAL ================= */
+
+.main-footer {
+background:#0d0d0d;
+color:#ccc;
+padding:80px 5% 30px;
+}
+
+.footer-container {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:50px;
+margin-bottom:50px;
+}
+
+.footer-logo {
+font-size:2rem;
+color:var(--accent);
+margin-bottom:15px;
+}
+
+.footer-column h4 {
+color:white;
+margin-bottom:15px;
+font-size:1.1rem;
+}
+
+.footer-column p {
+font-size:0.9rem;
+line-height:1.6;
+}
+
+.footer-column ul {
+list-style:none;
+padding:0;
+}
+
+.footer-column ul li {
+margin-bottom:10px;
+font-size:0.9rem;
+}
+
+.footer-column ul li a {
+color:#ccc;
+transition:0.3s;
+}
+
+.footer-column ul li a:hover {
+color:var(--primary);
+}
+
+.social-icons {
+margin-top:15px;
+display:flex;
+gap:15px;
+}
+
+.social-icons a {
+color:white;
+font-size:18px;
+transition:0.3s;
+}
+
+.social-icons a:hover {
+color:var(--primary);
+}
+
+.payment-methods {
+display:flex;
+gap:15px;
+font-size:28px;
+margin-top:10px;
+color:white;
+}
+
+.footer-bottom {
+border-top:1px solid #222;
+padding-top:20px;
+text-align:center;
+font-size:0.8rem;
+color:#777;
+}
+
+/* ================= MODAL SOBRE ================= */
+
+.about-modal {
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,0.7);
+justify-content:center;
+align-items:center;
+z-index:2000;
+}
+
+.about-modal.active {
+display:flex;
+}
+
+.about-modal-content {
+background:white;
+padding:40px;
+max-width:600px;
+width:90%;
+border-radius:10px;
+position:relative;
+animation:fadeIn 0.3s ease;
+}
+
+.about-modal-content h2 {
+margin-bottom:20px;
+}
+
+.about-modal-content p {
+margin-bottom:15px;
+line-height:1.6;
+}
+
+.close-about {
+position:absolute;
+top:15px;
+right:20px;
+font-size:24px;
+cursor:pointer;
+}
+
+@keyframes fadeIn {
+from { opacity:0; transform:translateY(-20px); }
+to { opacity:1; transform:translateY(0); }
+}
+
+</style>
+</head>
+<!-- ================= MODAL SOBRE NÓS ================= -->
+<div class="about-modal" id="aboutModal">
+<div class="about-modal-content">
+<span class="close-about">&times;</span>
+
+<h2>Sobre a WYZE</h2>
+
+<p>
+A WYZE nasceu em Londrina com o propósito de representar atitude,
+identidade e performance no cenário streetwear nacional.
+</p>
+
+<p>
+Cada coleção é criada para quem vive intensidade, movimento e
+autenticidade. Não seguimos tendências — criamos presença.
+</p>
+
+<p>
+WYZE não é apenas roupa. É posicionamento.
+</p>
+
+</div>
+</div>
+
+<body>
+
+<!-- CARRINHO -->
+<div class="cart-overlay"></div>
+
+<div class="cart-sidebar">
+    <div class="cart-header">
+        <h2>Seu Carrinho</h2>
+        <span class="close-cart">&times;</span>
+    </div>
+    <div class="cart-items"></div>
+    <div class="cart-footer">
+        <h3>Total: R$ <span id="cart-total">0.00</span></h3>
+        <button class="checkout-btn">Finalizar no WhatsApp</button>
+    </div>
+</div>
+
+<!-- HEADER -->
+<header class="hero">
+<nav class="navbar">
+<div class="logo">WYZE</div>
+
+
+
+<div class="cart-icon">
+<i class="fas fa-shopping-cart"></i>
+<span class="cart-count">0</span>
+</div>
+</nav>
+
+<div class="hero-content">
+<h1>COLEÇÃO OFICIAL WYZE</h1>
+<p>Estilo que vibra nas ruas</p>
+<a href="#colecao" class="cta-button">VER COLEÇÃO</a>
+</div>
+</header>
+
+<!-- PRODUTOS -->
+<section id="colecao" class="products-section">
+<h2>NOSSA COLEÇÃO</h2>
+
+<div class="products-grid">
+
+<div class="product-card">
+<img src="icon.png">
+<div class="product-info">
+<h3>Camiseta WYZE</h3>
+<p class="price">R$ 119,90</p>
+<button class="buy-button add-to-cart" data-name="Camiseta WYZE" data-price="119.90">Comprar</button>
+</div>
+</div>
+
+<div class="product-card">
+<img src="icon.png">
+<div class="product-info">
+<h3>Shorts WYZE</h3>
+<p class="price">R$ 159,90</p>
+<button class="buy-button add-to-cart" data-name="Shorts WYZE" data-price="159.90">Comprar</button>
+</div>
+</div>
+
+<div class="product-card">
+<img src="icon.png">
+<div class="product-info">
+<h3>Boné WYZE</h3>
+<p class="price">R$ 79,90</p>
+<button class="buy-button add-to-cart" data-name="Boné WYZE" data-price="79.90">Comprar</button>
+</div>
+</div>
+
+<div class="product-card">
+<img src="icon.png">
+<div class="product-info">
+<h3>Moletom WYZE</h3>
+<p class="price">R$ 189,99</p>
+<button class="buy-button add-to-cart" data-name="Moletom WYZE" data-price="189.99">Comprar</button>
+</div>
+</div>
+
+<div class="product-card">
+<img src="icon.png">
+<div class="product-info">
+<h3>Shorts WYZE</h3>
+<p class="price">R$ 159,90</p>
+<button class="buy-button add-to-cart" data-name="Shorts WYZE" data-price="159.90">Comprar</button>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- FOOTER -->
+<!-- ================= FOOTER PROFISSIONAL ================= -->
+<footer id="contato" class="main-footer">
+
+<div class="footer-container">
+
+<!-- MARCA -->
+<div class="footer-column">
+<h3 class="footer-logo">WYZE</h3>
+<p>
+A WYZE é uma marca streetwear criada para quem vive intensidade.
+Nascida em Londrina, unimos estilo urbano, performance e autenticidade
+em cada coleção lançada.
+</p>
+
+<div class="social-icons">
+<a href="#"><i class="fab fa-instagram"></i></a>
+<a href="#"><i class="fab fa-whatsapp"></i></a>
+<a href="#"><i class="fab fa-tiktok"></i></a>
+</div>
+</div>
+
+<!-- INSTITUCIONAL -->
+<!-- INSTITUCIONAL -->
+<div class="footer-column">
+<h4>Institucional</h4>
+<ul>
+<li><a href="#" id="openAbout">Sobre Nós</a></li>
+<li><a href="https://wa.me/554388230598?text=Olá! Tenho interesse em ser parceiro da WYZE." target="_blank">Seja um Parceiro</a></li>
+<li><a href="https://wa.me/554388230598?text=Olá! Gostaria de enviar meu currículo para trabalhar na WYZE." target="_blank">Trabalhe Conosco</a></li>
+</ul>
+</div>
+
+
+<!-- ATENDIMENTO -->
+<div class="footer-column">
+<h4>Atendimento</h4>
+<ul>
+<li><i class="fas fa-phone"></i> (43) 98823-0598</li>
+<li><i class="fas fa-envelope"></i> contato@wyze.com.br</li>
+<li><i class="fas fa-clock"></i> Seg à Sex - 09h às 18h</li>
+</ul>
+</div>
+
+<!-- PAGAMENTO -->
+<div class="footer-column">
+<h4>Pagamento</h4>
+
+<div class="payment-methods pix-only">
+<i class="fas fa-qrcode"></i>
+<span>Pagamento via Pix</span>
+</div>
+
+<p class="pix-info">
+Aprovação imediata e 100% segura.
+</p>
+<h1 style="margin-top:20px;">Segurança</h1>
+<p>Compra 100% segura e protegida.</p>
+</div>
+
+
+
+
+</div>
+
+<div class="footer-bottom">
+<p>© 2026 WYZE Streetwear. Todos os direitos reservados.</p>
+<p> • Desenvolvido por @vinixx.dx</p>
+</div>
+
+</footer>
+
+
+<script>
+const cartIcon = document.querySelector('.cart-icon');
+const cartSidebar = document.querySelector('.cart-sidebar');
+const cartOverlay = document.querySelector('.cart-overlay');
+const closeCart = document.querySelector('.close-cart');
+const cartItemsContainer = document.querySelector('.cart-items');
+const cartTotal = document.getElementById('cart-total');
+const cartCount = document.querySelector('.cart-count');
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+function saveCart(){
+localStorage.setItem('cart', JSON.stringify(cart));
+}
+
+function updateCartUI(){
+cartItemsContainer.innerHTML="";
+let total=0;
+let count=0;
+
+cart.forEach((item,index)=>{
+total+=item.price*item.quantity;
+count+=item.quantity;
+
+cartItemsContainer.innerHTML+=`
+<div class="cart-item">
+<strong>${item.name}</strong>
+<p>R$ ${item.price.toFixed(2)}</p>
+<p>
+Qtd: ${item.quantity}
+<button onclick="changeQuantity(${index},1)">+</button>
+<button onclick="changeQuantity(${index},-1)">-</button>
+</p>
+<button onclick="removeItem(${index})">Remover</button>
+<hr>
+</div>
+`;
+});
+
+cartTotal.textContent=total.toFixed(2);
+cartCount.textContent=count;
+saveCart();
+}
+
+function addToCart(name,price){
+const existing=cart.find(item=>item.name===name);
+if(existing){ existing.quantity++; }
+else{ cart.push({name,price,quantity:1}); }
+updateCartUI();
+}
+
+function changeQuantity(index,amount){
+cart[index].quantity+=amount;
+if(cart[index].quantity<=0){ cart.splice(index,1); }
+updateCartUI();
+}
+
+function removeItem(index){
+cart.splice(index,1);
+updateCartUI();
+}
+
+addToCartButtons.forEach(button=>{
+button.addEventListener('click',()=>{
+addToCart(button.dataset.name,parseFloat(button.dataset.price));
+});
+});
+
+cartIcon.addEventListener('click',()=>{
+cartSidebar.classList.add('active');
+cartOverlay.classList.add('active');
+});
+
+closeCart.addEventListener('click',()=>{
+cartSidebar.classList.remove('active');
+cartOverlay.classList.remove('active');
+});
+
+cartOverlay.addEventListener('click',()=>{
+cartSidebar.classList.remove('active');
+cartOverlay.classList.remove('active');
+});
+
+document.querySelector('.checkout-btn').addEventListener('click',()=>{
+let message="Olá! Quero finalizar:%0A%0A";
+cart.forEach(item=>{
+message+=`${item.name} - Qtd: ${item.quantity} - R$ ${(item.price*item.quantity).toFixed(2)}%0A`;
+});
+message+=`%0ATotal: R$ ${cartTotal.textContent}`;
+window.open(`https://wa.me/554388230598?text=${message}`,'_blank');
+});
+
+updateCartUI();
+
+// Modal Sobre Nós
+const openAbout = document.getElementById('openAbout');
+const aboutModal = document.getElementById('aboutModal');
+const closeAbout = document.querySelector('.close-about');
+
+openAbout.addEventListener('click', (e) => {
+e.preventDefault();
+aboutModal.classList.add('active');
+});
+
+closeAbout.addEventListener('click', () => {
+aboutModal.classList.remove('active');
+});
+
+aboutModal.addEventListener('click', (e) => {
+if (e.target === aboutModal) {
+aboutModal.classList.remove('active');
+}
+});
+
+</script>
+
+</body>
+</html>
